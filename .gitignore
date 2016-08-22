@@ -1,0 +1,6 @@
+*.pyc
+venv-*
+client_secret.json
+sheets.googleapis.com-python-smsbot.json
+.envrc
+env
