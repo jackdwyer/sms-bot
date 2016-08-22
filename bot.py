@@ -44,7 +44,10 @@ def parse_message(msg):
             _str += "{0} {1}\n".format(key, val)
         response = _str 
     else:
-        data = msg.split(' ', 1)
+        d = str(msg)
+        data = d.split(' ', 1)
+        print(data)
+        print(gclient.config[data[0]])
         if gclient.append_value([str(datetime.datetime.now()), data[1]], data[0]):
             response = "Value appended to: {}".format(gclient.config[data[0]])
     return response
