@@ -36,6 +36,7 @@ def requires_headers(f):
         return f(*args, **kwargs)
     return decorated
 
+
 def parse_message(msg):
     print(msg)
     if msg == "?":
@@ -52,6 +53,7 @@ def parse_message(msg):
             response = "Value appended to: {}".format(gclient.config[data[0]])
     return response
 
+
 @app.route("/", methods=['POST'])
 @requires_headers
 def index():
@@ -66,6 +68,11 @@ def index():
     resp = twilio.twiml.Response()
     resp.message(outcome)
     return str(resp)
+
+
+@app.route("/health")
+def health():
+    return 'ok'
 
 
 if __name__ == "__main__":
