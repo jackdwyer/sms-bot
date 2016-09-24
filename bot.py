@@ -19,6 +19,8 @@ app.logger.addHandler(logging.StreamHandler())
 app.logger.setLevel(logging.DEBUG)
 app.logger.disabled = False
 
+app.count = 0
+
 # handler = logging.StreamHandler()
 # handler.setLevel(logging.DEBUG)
 # app.logger.addHandler(handler)
@@ -43,7 +45,11 @@ def parse_message(msg):
         _str = "Usage:\n"
         for key, val in gclient.config.items():
             _str += "{0} {1}\n".format(key, val)
-        response = _str 
+        response = _str
+    elif msg == "c":
+        print("in here")
+        app.count += 1
+        response = "Current count: {}".format(str(app.count))
     else:
         d = str(msg)
         data = d.split(' ', 1)
