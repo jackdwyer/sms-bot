@@ -47,7 +47,7 @@ def sms_help():
 
 
 def parse_message(msg):
-    print(msg)
+    msg = msg.lower()
     if msg in ["?", "help"]:
         return sms_help()
         # _str = "Usage:\n"
