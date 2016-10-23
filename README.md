@@ -17,3 +17,4 @@ look at the environment variable SPREADSHEET_CONFIG to see how the sheet is setu
 
 ## TODOs
 [0] have msg == 't' return next 2 trains leave from [http://mta_ui.thundercloud.club](http://mta_ui.thundercloud.club)
+[1] name the containers so that I can look up container_id and grab the logs

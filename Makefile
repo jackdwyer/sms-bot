@@ -9,14 +9,13 @@ run:
 # console:
 #  	docker run -it --env-file env -p 5000:5000 -v $(CODE_PATH):/smsbot jackdwyer/smsbot:latest /bin/sh
 
-update-config: setup-docker-host cycle-containers
+update-config: setup-docker-host cycle
 
 deploy: build deploy-latest update-config
 
-cycle-containers:
+cycle:
 	ssh root@$(HOST) /root/cycle_container.sh
 	
-
 deploy-latest: build
 	docker push jackdwyer/smsbot:latest
 
@@ -29,3 +28,6 @@ setup-docker-host:
 
 console:
 	ssh root@$(HOST)
+
+prod-logs:
+	ssh root@$(HOST) docker logs -f a94c43670393

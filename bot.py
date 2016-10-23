@@ -39,14 +39,22 @@ def requires_headers(f):
     return decorated
 
 
+def sms_help():
+    _str = "Usage:\n"
+    for key, val in gclient.config.items():
+        _str += "{0} {1}\n".format(key, val)
+    return _str
+
+
 def parse_message(msg):
     print(msg)
-    if msg == "?":
-        _str = "Usage:\n"
-        for key, val in gclient.config.items():
-            _str += "{0} {1}\n".format(key, val)
-        response = _str
-    elif msg == "c":
+    if msg in ["?", "help"]:
+        return sms_help()
+        # _str = "Usage:\n"
+        # for key, val in gclient.config.items():
+        #     _str += "{0} {1}\n".format(key, val)
+        # response = _str
+    elif msg == "Beer" or msg == "beer" or msg == "BEER" or msg == "c":
         print("in here")
         app.count += 1
         response = "Current count: {}".format(str(app.count))
@@ -57,6 +65,8 @@ def parse_message(msg):
         print(gclient.config[data[0]])
         if gclient.append_value([str(datetime.datetime.now()), data[1]], data[0]):
             response = "Value appended to: {}".format(gclient.config[data[0]])
+        else:
+            return sms_help()
     return response
 
 
