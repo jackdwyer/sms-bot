@@ -48,6 +48,8 @@ def sms_help():
 
 def parse_message(msg):
     msg = msg.lower()
+    print("entered parse message")
+    print(msg)
     if msg in ["?", "help"]:
         return sms_help()
         # _str = "Usage:\n"
@@ -60,9 +62,17 @@ def parse_message(msg):
         response = "Current count: {}".format(str(app.count))
     else:
         d = str(msg)
+        print(d)
         data = d.split(' ', 1)
+        print('actual data')
         print(data)
-        print(gclient.config[data[0]])
+        try:
+            print('printing gclient')
+            print(gclient.config[data[0]])
+        except KeyError:
+            print("KEY ERROR line 69")
+            print(data[0])
+            return 'errored the fuck out'
         if gclient.append_value([str(datetime.datetime.now()), data[1]], data[0]):
             response = "Value appended to: {}".format(gclient.config[data[0]])
         else:
