@@ -7,4 +7,4 @@ if [[ -f /tmp/smsbot.id ]]; then
   rm /tmp/smsbot.id
 fi
 
-docker run -d --env-file sms-bot-env -p 5050:5000 jackdwyer/smsbot:latest /smsbot/bot.py > /tmp/smsbot.id
+docker run --name smsbot -d --env-file sms-bot-env -p 5050:5000 jackdwyer/smsbot:latest /smsbot/bot.py > /tmp/smsbot.id
