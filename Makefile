@@ -29,5 +29,6 @@ setup-docker-host:
 console:
 	ssh root@$(HOST)
 
-prod-logs:
-	ssh root@$(HOST) docker logs -f a94c43670393
+logs:
+	ssh root@$(HOST) docker logs --follow smsbot
+	# ssh root@$(HOST) docker logs -f a94c43670393
